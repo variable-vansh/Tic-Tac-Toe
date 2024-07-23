@@ -1,0 +1,55 @@
+/* checkout these pallets for a suitable color combo:
+    - https://coolors.co/palette/a8e8f9-00537a-013c58-f5a201-ffba42-ffd35b 
+    - https://coolors.co/palette/6ab6dc-49a6d4-2f94c6-277ba5-1f6284-e0b700-ffd20a-ffda33-ffe15c-ffe570
+    - */
+
+/* temporary styles for placing boxes */
+
+.leftPanel {
+    background-color: #2196F3;
+    /* opacity: ; */
+    width: 33.33vw;
+    height: 100vh;
+}
+
+.rightPanel {
+    background-color: #FFE14C;
+    width: 33.33vw;
+    height: 100vh;
+}
+
+.content-center {
+    width: 33.33vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body {
+    margin: 0px;
+    display: flex;
+    align-items: center;
+}
+
+.row {
+    font-size: 0px;
+}
+
+button {
+    width: 50px;
+    height: 50px;
+    vertical-align: top;
+    font-size: 30px;
+    ;
+}
+
+
+
+/* .content {
+    display: flex;
+    flex-direction: column;
+    background-color: bisque;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+} */

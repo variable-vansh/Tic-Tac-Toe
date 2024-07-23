@@ -16,6 +16,8 @@ This is crazy
     - logic to check when game is over
     - nothing about DOM, HTMl, CSS unless game works in console
 
+------------------------------------------------------------------
+
 - once game is working
     - create object to handle DOM
     - function to render contents of gameboard array on webpage

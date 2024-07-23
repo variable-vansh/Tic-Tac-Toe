@@ -19,7 +19,7 @@ function mainGameController(playerOneName = "Player One", playertwoName = "Playe
         const board = gameBoard();
 
         // contains player details
-        const players = [{
+        let players = [{
             name: playerOneName,
             symbol: "X"
         },
@@ -34,7 +34,10 @@ function mainGameController(playerOneName = "Player One", playertwoName = "Playe
         // controls functionalities like:
         // switch player after turn
         const switchPlayerAfterTurn = () => {
-            activePlayer = (activePlayer === players[0]) ? players[1] : players[0];
+            if (isGameOver == false) {
+                activePlayer = (activePlayer === players[0]) ? players[1] : players[0];
+            }
+
         }
 
         // get active player details
@@ -44,7 +47,8 @@ function mainGameController(playerOneName = "Player One", playertwoName = "Playe
         const printNewRound = () => {
             board.printBoard();
             if (isGameOver == false) {
-                console.log(`It is ${activePlayer.name}'s turn`)
+                gameResult = `It is ${activePlayer.name}'s turn`;
+                console.log(gameResult)
             } else {
                 return;
 
@@ -130,7 +134,7 @@ function mainGameController(playerOneName = "Player One", playertwoName = "Playe
         // print the board initially before any round is played
         printNewRound();
         // just return the play Round, and get Active Player
-        return { playRound, getActivePlayer };
+        return { playRound, getActivePlayer, players };
     } else {
 
         return;
@@ -211,8 +215,57 @@ function Cell() {
     return { addSymbol, getSymbol }
 }
 
+
+
+
 let gameResult = "";
 var isGameOver = false;
 
-// const play = mainGameController()
 const play = (isGameOver == false) ? mainGameController() : "ded";
+const players = play.players;
+
+let leftPanel = document.querySelector(".leftPanel");
+let rightPanel = document.querySelector(".rightPanel");
+
+leftPanel.style.opacity = "";
+rightPanel.style.opacity = "0.75";
+
+function manageColor() {
+    if (play.getActivePlayer().name == players[1].name) {
+
+        leftPanel.style.opacity = "";
+        rightPanel.style.opacity = "0.75";
+
+    } else if (play.getActivePlayer().name == players[0].name) {
+
+        leftPanel.style.opacity = "0.75";
+        rightPanel.style.opacity = "";
+    }
+}
+
+function clickBtn(row, column) {
+
+    manageColor()
+
+    console.log(isGameOver)
+    if (isGameOver == false) {
+
+        let className = `(${row},${column})`;
+        let btn = document.getElementById(className);
+
+        if (btn.innerText == "") {
+            btn.innerText = play.getActivePlayer().symbol;
+        }
+        play.playRound(row, column);
+    }
+    else {
+        alert("Game over, don't click now ヽ(ಠ_ಠ)ノ")
+    }
+    let msgBox = document.querySelector(".msgBox")
+    msgBox.innerText = gameResult;
+
+}
+
+
+
+
