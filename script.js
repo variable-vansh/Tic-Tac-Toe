@@ -224,9 +224,11 @@ var isGameOver = false;
 const play = (isGameOver == false) ? mainGameController() : "ded";
 const players = play.players;
 
+// DOM for left and right panel
 let leftPanel = document.querySelector(".leftPanel");
 let rightPanel = document.querySelector(".rightPanel");
 
+// initialize opacity
 leftPanel.style.opacity = "";
 rightPanel.style.opacity = "0.75";
 
@@ -239,6 +241,62 @@ function manageColor() {
     } else if (play.getActivePlayer().name == players[0].name) {
 
         leftPanel.style.opacity = "0.75";
+        rightPanel.style.opacity = "";
+    }
+}
+
+// initialize left image
+let leftImg = document.querySelector(".leftImg");
+leftImg.innerHTML = ' <img src="images/punch_right.png" alt="">';
+
+// initialize right image
+let rightImg = document.querySelector(".rightImg");
+rightImg.innerHTML = '<img src="images/block_right.png" alt="">';
+
+
+function updateLeftImg() {
+
+    if (gameResult == "It is Player One's turn") {
+        // left punching
+        leftImg.innerHTML = ' <img src="images/punch_right.png" alt="">';
+        // right blocking
+        rightImg.innerHTML = '<img src="images/block_right.png" alt="">';
+    }
+
+    if (gameResult == "It is Player Two's turn") {
+        // left blocking
+        leftImg.innerHTML = '<img src="images/block_right.png" alt="">';
+        // right punching
+        rightImg.innerHTML = ' <img src="images/punch_right.png" alt="">';
+    }
+
+    if (gameResult == "Player One WON !!!") {
+        // left won
+        leftImg.innerHTML = '<img src="images/won_right.png" alt="">';
+        // right lost
+        rightImg.innerHTML = '<img src="images/lost_right.png" alt="">';
+
+        leftPanel.style.opacity = "";
+        rightPanel.style.opacity = "";
+    }
+
+    if (gameResult == "Player Two WON !!!") {
+        // left lost
+        leftImg.innerHTML = '<img src="images/lost_right.png" alt="">';
+        // right won
+        rightImg.innerHTML = ' <img src="images/won_right.png" alt="">';
+
+        leftPanel.style.opacity = "";
+        rightPanel.style.opacity = "";
+    }
+
+    if (gameResult == "DRAW!!") {
+        // left idle
+        leftImg.innerHTML = '<img src="images/idle_right.png" alt="">';
+        // right idle
+        rightImg.innerHTML = ' <img src="images/idle_right.png" alt="">';
+
+        leftPanel.style.opacity = "";
         rightPanel.style.opacity = "";
     }
 }
@@ -263,6 +321,7 @@ function clickBtn(row, column) {
     }
     let msgBox = document.querySelector(".msgBox")
     msgBox.innerText = gameResult;
+    updateLeftImg();
 
 }
 
