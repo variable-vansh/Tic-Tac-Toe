@@ -104,7 +104,7 @@ function mainGameController(playerOneName = "Player One", playertwoName = "Playe
                             }
                         }
                     }
-                    if (emptyCellCounter == 0) {
+                    if (emptyCellCounter == 0 && isGameOver == false) {
                         isGameOver = true;
                         // console.log("DRAW!!!")
                         gameResult = "DRAW!!"
